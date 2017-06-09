@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 import { AuthenticatedGuard } from './authenticated.guard';
+import { GlobaldataService } from './globaldata.service';
 
 const routes: Routes = [
   { path: 'page1', component: Page1Component },
@@ -32,7 +33,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthenticatedGuard],
+  providers: [AuthenticatedGuard, GlobaldataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
