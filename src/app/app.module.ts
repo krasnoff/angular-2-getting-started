@@ -14,9 +14,9 @@ import { AuthenticatedGuard } from './authenticated.guard';
 import { GlobaldataService } from './globaldata.service';
 
 const routes: Routes = [
-  { path: 'page1', component: Page1Component },
+  { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
   { path: 'page2', component: Page2Component, canActivate: [AuthenticatedGuard] },
-  { path: 'login', component: LoginComponent }
+  { path: 'login/:redirectTo', component: LoginComponent }
 ];
 
 @NgModule({
