@@ -13,10 +13,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticatedGuard } from './authenticated.guard';
 import { GlobaldataService } from './globaldata.service';
 
+import { AdminModule } from './admin/admin.module';
+
 const routes: Routes = [
   { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
   { path: 'page2', component: Page2Component, canActivate: [AuthenticatedGuard] },
-  { path: 'login/:redirectTo', component: LoginComponent }
+  { path: 'login/:redirectTo', component: LoginComponent },
+  { path: 'admin', loadChildren: 'admin/admin.module#AdminModule' }
 ];
 
 @NgModule({
@@ -31,6 +34,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    AdminModule,
     RouterModule.forRoot(routes)
   ],
   providers: [AuthenticatedGuard, GlobaldataService],
