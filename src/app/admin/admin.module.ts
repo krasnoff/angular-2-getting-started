@@ -9,7 +9,7 @@ import { AuthenticatedGuard } from '../authenticated.guard';
 import { GlobaldataService } from '../globaldata.service';
 
 const routes: Routes = [
-  { path: '', component: AdminComponent, canActivate: [AuthenticatedGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard] }
 ];
 
 @NgModule({
