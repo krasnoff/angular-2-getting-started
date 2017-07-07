@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import { GlobaldataService } from '../globaldata.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   redirectTo: string;
   private sub: any;
 
-  constructor(private gd: GlobaldataService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   doLogin(val: any): void {
     if (this.txtUserName.value == "user" && this.txtPassword.value == "1111") {
-      this.gd.shareObj['loggedin'] = 'true';
+      sessionStorage.setItem("loggedIn", "true");
       this.router.navigate(["/" + this.redirectTo]);
     }
   }
