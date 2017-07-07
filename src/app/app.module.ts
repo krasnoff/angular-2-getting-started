@@ -12,8 +12,6 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthenticatedGuard } from './authenticated.guard';
 
-import { AdminModule } from './admin/admin.module';
-
 const routes: Routes = [
   { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
   { path: 'page2', component: Page2Component, canActivate: [AuthenticatedGuard] },
