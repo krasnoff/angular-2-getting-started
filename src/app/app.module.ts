@@ -12,6 +12,10 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthenticatedGuard } from './authenticated.guard';
 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 const routes: Routes = [
   { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
   { path: 'page2', component: Page2Component, canActivate: [AuthenticatedGuard] },
@@ -19,6 +23,11 @@ const routes: Routes = [
   { path: 'login/:redirectTo', component: LoginComponent }
   
 ];
+
+// AoT requires an exported function for factories
+/*export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}*/
 
 @NgModule({
   declarations: [
@@ -32,7 +41,16 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    HttpClientModule,
+    RouterModule.forRoot(routes)/*,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+      
+    })*/
   ],
   providers: [AuthenticatedGuard],
   bootstrap: [AppComponent]
