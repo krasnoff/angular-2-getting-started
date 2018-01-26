@@ -1,6 +1,14 @@
 <h1>
   {{title}}
 </h1>
+<br>
+<div>
+  <span>{{ 'HOME.TITLE' | translate }}</span><br>
+  <p [translate]="'HOME.SELECT'"></p><br>
+  <button (click)="useLanguage('en')">en</button>
+  <button (click)="useLanguage('fr')">fr</button>
+</div>
+<br>
 <a [routerLink]="['/page1']">page 1</a>
 <a [routerLink]="['/page2']">page 2</a>
 <a [routerLink]="['/admin']">admin</a>
