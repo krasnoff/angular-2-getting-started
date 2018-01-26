@@ -13,9 +13,9 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthenticatedGuard } from './authenticated.guard';
 
-//import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
-//import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const routes: Routes = [
   { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
@@ -26,9 +26,9 @@ const routes: Routes = [
 ];
 
 // AoT requires an exported function for factories
-/*export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "i18n/", ".json");
-}*/
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)/*,
+    RouterModule.forRoot(routes),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -51,7 +51,7 @@ const routes: Routes = [
         deps: [HttpClient]
       }
       
-    })*/
+    })
   ],
   providers: [AuthenticatedGuard],
   bootstrap: [AppComponent]
