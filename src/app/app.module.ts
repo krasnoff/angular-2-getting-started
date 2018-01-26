@@ -14,8 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticatedGuard } from './authenticated.guard';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+import { GlobalDataService } from './global-data.service';
 
 const routes: Routes = [
   { path: 'page1', component: Page1Component, canActivate: [AuthenticatedGuard] },
@@ -53,7 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       
     })
   ],
-  providers: [AuthenticatedGuard],
+  providers: [AuthenticatedGuard, GlobalDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

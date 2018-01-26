@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Renderer, Output, EventEmitter } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import { GlobalDataService } from './global-data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,20 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'app works!';
-  @ViewChild('langSelect')langSelect: any;
+  @ViewChild('innerRouter')innerRouter: any;
 
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
+  @Output() onLangChange = new EventEmitter<string>();
+
+  constructor(private translate: TranslateService, private gd: GlobalDataService, private renderer:Renderer) {
+    if (this.gd.shareObj['selectedLang'] == undefined)
+      this.gd.shareObj['selectedLang'] = 'en'
+    translate.setDefaultLang(this.gd.shareObj['selectedLang']);
   }
 
   useLanguage(language: string) {
-    console.log(language);
     this.translate.use(language);
+    this.onLangChange.emit(language);
+
+    
   }
 }

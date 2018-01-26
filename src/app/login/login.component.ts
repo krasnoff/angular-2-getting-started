@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { GlobalDataService } from '../global-data.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   redirectTo: string;
   private sub: any;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private gd: GlobalDataService, private translate: TranslateService) {
+    if (this.gd.shareObj['selectedLang'] == undefined)
+      this.gd.shareObj['selectedLang'] = 'en'
+    translate.setDefaultLang(this.gd.shareObj['selectedLang']);
+  }
+
+  onLangChange(lang: string) {
+    console.log(lang)
+  }
+
+  public useLanguage(language: string) {
+    this.translate.use(language);
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
