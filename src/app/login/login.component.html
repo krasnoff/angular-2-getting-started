@@ -1,5 +1,5 @@
 <p>
-    <input placeholder="user name" type="text" [formControl]="txtUserName"><br>
-    <input placeholder="password" type="password" [formControl]="txtPassword"><br>
-    <button (click)="doLogin($event)">Login</button>
+    <input placeholder="{{ 'HOME.USER-NAME' | translate }}" type="text" [formControl]="txtUserName"><br>
+    <input placeholder="{{ 'HOME.PASSWORD' | translate }}" type="password" [formControl]="txtPassword"><br>
+    <button (click)="doLogin($event)">{{ 'HOME.LOGIN' | translate }}</button>
   </p>

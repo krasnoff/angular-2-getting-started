@@ -1,7 +1,6 @@
 <h1>
-  {{title}}
+  {{ 'HOME.APP-WORKS' | translate }}
 </h1>
-<br>
 <div>
   <span>{{ 'HOME.TITLE' | translate }}</span><br>
   <p [translate]="'HOME.SELECT'"></p><br>
@@ -13,5 +12,5 @@
 <a [routerLink]="['/page2']">page 2</a>
 <a [routerLink]="['/admin']">admin</a>
 <div class="outer-outlet">
-  <router-outlet #innerRouter></router-outlet>
+  <router-outlet></router-outlet>
 </div>

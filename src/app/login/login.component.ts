@@ -21,10 +21,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.gd.shareObj['selectedLang'] == undefined)
       this.gd.shareObj['selectedLang'] = 'en'
     translate.setDefaultLang(this.gd.shareObj['selectedLang']);
+
+    gd.changeLanguage$.subscribe(lang => this.onLangChange(lang))
   }
 
   onLangChange(lang: string) {
-    console.log(lang)
+    console.log('from inner component: ' + lang);
+    this.translate.setDefaultLang(this.gd.shareObj['selectedLang']);
   }
 
   public useLanguage(language: string) {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 interface ShareObj {
   [id: string]: any;
@@ -6,9 +6,14 @@ interface ShareObj {
 
 @Injectable()
 export class GlobalDataService {
-
-  constructor() { }
-
+  public changeLanguage$: EventEmitter<string>;
   shareObj: ShareObj = {};
+  
+  constructor() { 
+    this.changeLanguage$ = new EventEmitter();
+  }
 
+  public changeLanguage(lang: string): void {
+    this.changeLanguage$.emit(lang);
+  }
 }

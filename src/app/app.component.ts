@@ -11,8 +11,6 @@ export class AppComponent {
   title = 'app works!';
   @ViewChild('innerRouter')innerRouter: any;
 
-  @Output() onLangChange = new EventEmitter<string>();
-
   constructor(private translate: TranslateService, private gd: GlobalDataService, private renderer:Renderer) {
     if (this.gd.shareObj['selectedLang'] == undefined)
       this.gd.shareObj['selectedLang'] = 'en'
@@ -20,9 +18,7 @@ export class AppComponent {
   }
 
   useLanguage(language: string) {
-    this.translate.use(language);
-    this.onLangChange.emit(language);
-
-    
+    this.translate.use(language);  
+    this.gd.changeLanguage(language);  
   }
 }
