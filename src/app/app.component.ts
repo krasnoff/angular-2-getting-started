@@ -1,6 +1,8 @@
-import { Component, ViewChild, Renderer, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, Renderer, Output, EventEmitter, AfterViewChecked  } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import { GlobalDataService } from './global-data.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -20,5 +22,11 @@ export class AppComponent {
   useLanguage(language: string) {
     this.translate.use(language);  
     this.gd.changeLanguage(language);  
+  }
+
+  ngAfterViewChecked() {
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    });
   }
 }

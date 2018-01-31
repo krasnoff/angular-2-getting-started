@@ -10,7 +10,9 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "i18n"
+        "i18n",
+        "js",
+        "css"
       ],
       "index": "index.html",
       "main": "main.ts",
